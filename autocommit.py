@@ -73,8 +73,8 @@ def commit_message(repo_root):
 
 
 def do_commit(repo_root):
-    msg = commit_message(repo_root)
     subprocess.run(["git", "add", "-A", ":/"], cwd=repo_root)
+    msg = commit_message(repo_root)
     # commit may fail if no changes remain; ignore nonzero
     subprocess.run(["git", "commit", "-m", msg], cwd=repo_root)
     print("[autocommit.py] committed:", msg)
