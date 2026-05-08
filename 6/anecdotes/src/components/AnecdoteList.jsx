@@ -1,6 +1,6 @@
 import { useAnecdotes, useAnecdoteActions } from "../store";
 
-export const AnecdoteList = () => {
+const AnecdoteList = () => {
     const anecdotes = useAnecdotes()
     const { vote } = useAnecdoteActions()
     
