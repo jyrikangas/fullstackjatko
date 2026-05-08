@@ -6,7 +6,7 @@ const AnecdoteList = () => {
     
     return (
         <div>
-          {anecdotes.toSorted((a1,a2) => a1.votes>a2.votes ? a1 : a2 ).map(anecdote => (
+          {anecdotes.map(anecdote => (
             <div key={anecdote.id}>
               <div>{anecdote.content}</div>
                 <div>
