@@ -22,3 +22,5 @@ const AnecdoteForm = () => {
         </div>
     )
 }
+
+export default AnecdoteForm
