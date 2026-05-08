@@ -3,9 +3,15 @@ import { useAnecdotes, useAnecdoteActions } from './store'
 
 const App = () => {
   const anecdotes = useAnecdotes()
-  const { vote } = useAnecdoteActions()
- 
+  const { vote, add } = useAnecdoteActions()
 
+  const generateId = () => Number((Math.random() * 1000000).toFixed(0))
+  const addAnecdote = (e) => {
+    e.preventDefault()
+    const content = e.target.anecdote.value
+    add([ id: generateId(), content, votes: 0])
+    e.target.reset()
+  }
   return (
     <div>
       <h2>Anecdotes</h2>
@@ -23,7 +29,7 @@ const App = () => {
         <div>
           <input />
         </div>
-        <button>create</button>
+        <button onClick={addAnecdote}>create</button>
       </form>
     </div>
   )
