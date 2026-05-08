@@ -1,6 +1,6 @@
 
-import { useAnecdotes, useAnecdoteActions } from './store'
-
+import AnecdoteForm from './components/AnecdoteForm'
+import AnecdoteList from './components/AnecdoteList'
 const App = () => {
   const anecdotes = useAnecdotes()
   const { vote, add } = useAnecdoteActions()
@@ -24,13 +24,7 @@ const App = () => {
           </div>
         </div>
       ))}
-      <h2>create new</h2>
-      <form onSubmit={addAnecdote}>
-        <div>
-          <input name="anecdote"/>
-        </div>
-        <button >create</button>
-      </form>
+      
     </div>
   )
 }
