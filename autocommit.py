@@ -30,8 +30,50 @@ def has_changes(repo_root):
     return bool(p.stdout.strip())
 
 
+def changed_files(repo_root):
+    p = subprocess.run(
+        ["git", "diff", "--cached", "--name-only", "--diff-filter=ACMRTUXB"],
+        cwd=repo_root,
+        capture_output=True,
+        text=True,
+    )
+    return [line for line in p.stdout.splitlines() if line.strip()]
+
+
+def file_change_score(repo_root, path):
+    p = subprocess.run(
+        ["git", "diff", "--cached", "--numstat", "--", path],
+        cwd=repo_root,
+        capture_output=True,
+        text=True,
+    )
+    for line in p.stdout.splitlines():
+        parts = line.split("\t")
+        if len(parts) < 3:
+            continue
+        added, deleted = parts[0], parts[1]
+        if added == "-" or deleted == "-":
+            return 1
+        return int(added) + int(deleted)
+    return 1
+
+
+def primary_changed_file(repo_root):
+    files = changed_files(repo_root)
+    if not files:
+        return "changes"
+
+    return max(files, key=lambda path: (file_change_score(repo_root, path), len(path)))
+
+
+def commit_message(repo_root):
+    timestamp = datetime.utcnow().strftime("%Y%m%d-%H%M")
+    filename = os.path.basename(primary_changed_file(repo_root))
+    return f"autocom {timestamp} {filename}"
+
+
 def do_commit(repo_root):
-    msg = f"Auto-save: {datetime.utcnow().isoformat()}Z"
+    msg = commit_message(repo_root)
     subprocess.run(["git", "add", "-A", ":/"], cwd=repo_root)
     # commit may fail if no changes remain; ignore nonzero
     subprocess.run(["git", "commit", "-m", msg], cwd=repo_root)
