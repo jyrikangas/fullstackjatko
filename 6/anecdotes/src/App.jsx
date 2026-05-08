@@ -9,7 +9,7 @@ const App = () => {
   const addAnecdote = (e) => {
     e.preventDefault()
     const content = e.target.anecdote.value
-    add([ id: generateId(), content, votes: 0])
+    add({ id: generateId(), content})
     e.target.reset()
   }
   return (
