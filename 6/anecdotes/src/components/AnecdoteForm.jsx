@@ -1,6 +1,6 @@
 import { useAnecdoteActions } from "../store"
 
-export const AnecdoteForm = () => {
+const AnecdoteForm = () => {
     const { add } = useAnecdoteActions()
 
     const generateId = () => Number((Math.random() * 1000000).toFixed(0))
