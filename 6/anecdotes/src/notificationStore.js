@@ -18,3 +18,4 @@ const useNotificationStore = create((set) => ({
 }))
 
 export const useNotifications = () => useNotificationStore((state) => state.message)
+export const useNotificationActions = () => useNotificationStore((state) => state.actions) 
