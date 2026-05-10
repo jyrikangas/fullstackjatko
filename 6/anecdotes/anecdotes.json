@@ -39,6 +39,11 @@
       "content": "asdfasdf",
       "votes": 1,
       "id": "ypfxto6WlVo"
+    },
+    {
+      "content": "",
+      "votes": 0,
+      "id": "m44awT4KnWg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
