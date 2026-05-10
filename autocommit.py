@@ -74,7 +74,7 @@ def primary_changed_file(repo_root):
 def commit_message(repo_root):
     timestamp = datetime.now(HELSINKI_TZ).strftime("%A %H:%M")
     filename = os.path.basename(primary_changed_file(repo_root))
-    return f"autocom {timestamp} {filename}"
+    return f"{timestamp} {filename}"
 
 
 def do_commit(repo_root):
