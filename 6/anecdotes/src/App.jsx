@@ -20,6 +20,8 @@ const App = () => {
   useEffect(() => {
       setMessage(`You voted `)
       makeVisible()
+      console.log('asfasfd');
+      
   })
   return (
     <div>
