@@ -2,12 +2,12 @@
 import { useNotifications } from "../notificationStore"
 
 const Notification = () => {
-  const { notification, duration } = useNotifications()
+  const { notification } = useNotifications()
   const style = {
     border: 'solid',
     padding: 10,
     borderWidth: 1,
-    marginBottom: 10,
+    marginBottom: 10
     
   }
 
