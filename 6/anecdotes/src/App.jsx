@@ -8,7 +8,7 @@ import Notification from './components/Notification'
 import { useAnecdoteActions } from './store'
 import anecdoteService from './services/anecdotes'
 
-
+import { useNotificationActions } from './notificationStore'
 const App = () => {
 
   const { initialize } = useAnecdoteActions()
@@ -18,7 +18,7 @@ const App = () => {
   }, [initialize])
   const { setMessage, makeVisible } = useNotificationActions()
   useEffect(() => {
-      setMessage(`You voted '${updated.content}'`)
+      setMessage(`You voted `)
       makeVisible()
   })
   return (
