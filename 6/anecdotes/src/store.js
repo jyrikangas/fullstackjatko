@@ -7,6 +7,7 @@ import { create } from 'zustand'
 
 
 const useAnecdoteStore = create((set) => ({
+    
   anecdotes: [],
   filter: "",
   actions: {
