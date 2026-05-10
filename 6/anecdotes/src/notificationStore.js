@@ -17,4 +17,4 @@ const useNotificationStore = create((set) => ({
     }
 }))
 
-export default useNotificationStore((state) => state.message)
+export const useNotificationStore((state) => state.message)
