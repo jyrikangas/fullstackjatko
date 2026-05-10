@@ -9,7 +9,7 @@ const useNotificationStore = create((set) => ({
         setMessage: message => set(
             state => ({message: message })
         ),
-        makeVisible: => set(
+        makeVisible: () => set(
             state => ({ visible: true})
         )
 
