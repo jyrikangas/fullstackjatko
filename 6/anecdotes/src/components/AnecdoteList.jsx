@@ -9,8 +9,9 @@ const AnecdoteList = () => {
       await vote(anecdote.id)
       setMessage(`You voted for ${anecdote.content}`)
     }
-    const remove = async (anecdote) => {
-      await 
+    const handleRemove = async (anecdote) => {
+      setMessage(`You removed ${anecdote.content}`)
+      await remove(anecdote.id)
     }
     return (
         <div>
@@ -20,7 +21,7 @@ const AnecdoteList = () => {
                 <div>
                   has {anecdote.votes} votes 
                   <button onClick={() => handleVote(anecdote)}>vote</button>
-                  <button onClick={() => remove()}>delete</button>
+                  <button onClick={() => handleRemove(anecdote)}>delete</button>
                 </div>
             </div>
           ))}
