@@ -13,6 +13,11 @@ import sys
 import subprocess
 import time
 from datetime import datetime
+from zoneinfo import ZoneInfo
+
+
+HELSINKI_TZ = ZoneInfo("Europe/Helsinki")
+MIN_SECONDS_BETWEEN_COMMITS = 61
 
 
 def resolve_repo_root(path):
@@ -67,7 +72,7 @@ def primary_changed_file(repo_root):
 
 
 def commit_message(repo_root):
-    timestamp = datetime.utcnow().strftime("%Y%m%d-%H%M")
+    timestamp = datetime.now(HELSINKI_TZ).strftime("%A %H:%M")
     filename = os.path.basename(primary_changed_file(repo_root))
     return f"autocom {timestamp} {filename}"
 
@@ -85,6 +90,7 @@ def main():
     repo_root = resolve_repo_root(start_path)
     poll_interval = 0.8
     debounce = 0.5
+    last_commit_at = 0.0
     last_seen = False
     pending = False
     print(f"[autocommit.py] polling git status in {repo_root}")
@@ -96,8 +102,15 @@ def main():
                 pending = True
                 debounce_until = time.time() + debounce
             if pending and time.time() >= debounce_until:
-                if has_changes(repo_root):
+                now = time.time()
+                if has_changes(repo_root) and now - last_commit_at >= MIN_SECONDS_BETWEEN_COMMITS:
                     do_commit(repo_root)
+                    last_commit_at = now
+                elif now - last_commit_at < MIN_SECONDS_BETWEEN_COMMITS:
+                    debounce_until = last_commit_at + MIN_SECONDS_BETWEEN_COMMITS
+                    pending = True
+                    time.sleep(poll_interval)
+                    continue
                 pending = False
             last_seen = changed
             time.sleep(poll_interval)
