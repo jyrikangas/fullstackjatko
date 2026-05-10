@@ -35,6 +35,7 @@ const useAnecdoteStore = create((set) => ({
         state => ({
           anecdotes: state.anecdotes.filter(anecdote => anecdote.id !== id)
         }))
+      }
   }
   
 
