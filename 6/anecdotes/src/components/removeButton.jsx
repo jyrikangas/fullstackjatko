@@ -1,6 +1,7 @@
 import { useAnecdoteActions } from "../store";
+import { useNotificationActions } from "../notificationStore";
 
-const removeButton = () => {
+const RemoveButton = () => {
 
     const { remove } = useAnecdoteActions()
 
