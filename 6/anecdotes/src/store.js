@@ -31,9 +31,10 @@ const useAnecdoteStore = create((set) => ({
           anecdote.id === id ? { ...anecdote, votes: anecdote.votes + 1 } : anecdote
         )
       })
-  )
-  },
+  ),
   setFilter: value => set(() => ({ filter: value }))
+  }
+  
 
 }))
 
