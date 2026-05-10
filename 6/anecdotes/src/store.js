@@ -27,8 +27,14 @@ const useAnecdoteStore = create((set) => ({
 
 
       },
-  setFilter: value => set(() => ({ filter: value })),
-  initialize: anecdotes => set(() => ({ anecdotes }))
+    setFilter: value => set(() => ({ filter: value })),
+    initialize: anecdotes => set(() => ({ anecdotes })),
+    remove: async (id) => {
+      await anecdoteService.remove(id)
+      set(
+        state => ({
+          anecdotes: state.anecdotes.filter(anecdote => anecdote.id !== id)
+        }))
   }
   
 
