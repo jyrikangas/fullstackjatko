@@ -34,4 +34,4 @@ const update = async (id, anecdote) => {
     return await response.json()
 }
 
-export default { getAll, createNew }
+export default { getAll, createNew, update }
