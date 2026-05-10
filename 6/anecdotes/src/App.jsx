@@ -18,6 +18,7 @@ const App = () => {
   }, [initialize])
   return (
     <div>
+      <Notification/>
       <Filter/>
       <h2>Anecdotes</h2>
       <AnecdoteList/>
