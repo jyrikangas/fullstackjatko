@@ -24,7 +24,7 @@ const useAnecdoteStore = create((set) => ({
             anecdote.id === id ? updated : anecdote
           )
         }))
-      const { setMessage, makeVisible } = () => useNotificationActions()
+      const { setMessage, makeVisible } = useNotificationActions()
       setMessage(`You voted '${updated.content}'`)
       makeVisible()
 
