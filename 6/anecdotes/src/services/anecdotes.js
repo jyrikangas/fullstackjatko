@@ -44,4 +44,4 @@ const delete = async (id) => {
   return await response.json()
 }
 
-export default { getAll, createNew, update }
+export default { getAll, createNew, update, delete }
