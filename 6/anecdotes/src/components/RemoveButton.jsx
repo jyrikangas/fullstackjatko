@@ -1,13 +1,16 @@
 import { useAnecdoteActions } from "../store";
 import { useNotificationActions } from "../notificationStore";
 
-const RemoveButton = () => {
+const RemoveButton = ({ anecdote }) => {
 
     const { remove } = useAnecdoteActions()
-
+    const { setMessage } = useNotificationActions()
     const handleRemove = async (anecdote) => {
       setMessage(`You removed ${anecdote.content}`)
       await remove(anecdote.id)
+    }
+    if (anecdote.votes>0) {
+        return null
     }
     return (
         <div>
@@ -15,3 +18,4 @@ const RemoveButton = () => {
         </div>
     )
 }
+export default RemoveButton
