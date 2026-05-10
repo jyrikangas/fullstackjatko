@@ -16,6 +16,11 @@ const App = () => {
   useEffect(() => { 
     anecdoteService.getAll().then(anecdotes => initialize(anecdotes))
   }, [initialize])
+  const { setMessage, makeVisible } = useNotificationActions()
+  useEffect(() => {
+      setMessage(`You voted '${updated.content}'`)
+      makeVisible()
+  })
   return (
     <div>
       <Notification/>
