@@ -2,7 +2,7 @@
 import { useNotifications } from "../notificationStore"
 
 const Notification = () => {
-  const { notification } = useNotifications()
+  const { message } = useNotifications()
   const style = {
     border: 'solid',
     padding: 10,
@@ -11,7 +11,7 @@ const Notification = () => {
     
   }
 
-  return <div style={style}> { notification }</div>
+  return <div style={style}> { message }</div>
 }
 
 export default Notification
