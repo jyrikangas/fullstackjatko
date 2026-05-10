@@ -1,4 +1,5 @@
 
+
 import { create } from 'zustand'
 
 const useNotificationStore = create((set) => ({
@@ -15,3 +16,5 @@ const useNotificationStore = create((set) => ({
 
     }
 }))
+
+export default useNotificationStore((state) => state.message)
