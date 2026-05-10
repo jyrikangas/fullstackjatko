@@ -1,6 +1,5 @@
 
 import anecdoteService from './services/anecdotes'
-import { useNotificationActions } from './notificationStore'
 import { create } from 'zustand'
 
 // const getId = () => (100000 * Math.random()).toFixed(0)
@@ -25,9 +24,6 @@ const useAnecdoteStore = create((set) => ({
             anecdote.id === id ? updated : anecdote
           )
         }))
-      const { setMessage, makeVisible } = useNotificationActions()
-      setMessage(`You voted '${updated.content}'`)
-      makeVisible()
 
 
       },
