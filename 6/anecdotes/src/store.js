@@ -42,4 +42,5 @@ export const useAnecdotes = () => {
   const filter = useAnecdoteStore((state) => state.filter)
   return anecdotes.filter(anecdote => anecdote.content.toLowerCase().includes(filter.toLowerCase()))
 }
+export const useFilter = () => useAnecdoteStore((state) => state.filter)
 export const useAnecdoteActions = () => useAnecdoteStore((state) => state.actions)
