@@ -8,7 +8,6 @@ import Notification from './components/Notification'
 import { useAnecdoteActions } from './store'
 import anecdoteService from './services/anecdotes'
 
-import { useNotifications, useNotificationActions } from './notificationStore'
 const App = () => {
 
   const { initialize } = useAnecdoteActions()
@@ -16,15 +15,7 @@ const App = () => {
   useEffect(() => { 
     anecdoteService.getAll().then(anecdotes => initialize(anecdotes))
   }, [initialize])
-  const { setMessage, makeVisible } = useNotificationActions()
-  const { message } = useNotifications
-  useEffect(() => {
-      setMessage(`You voted `)
-      makeVisible()
-      console.log('asfasfd');
 
-      
-  })
   return (
     <div>
       <Notification/>
