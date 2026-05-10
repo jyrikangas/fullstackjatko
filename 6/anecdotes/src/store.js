@@ -20,7 +20,7 @@ const asObject = anecdote => ({
 
 const useAnecdoteStore = create((set) => ({
   anecdotes: anecdotesAtStart.map(asObject),
-    filter: "",
+  filter: "",
   actions: {
     add: anecdote => set(
         state => ({ anecdotes: [...state.anecdotes, anecdote] })
