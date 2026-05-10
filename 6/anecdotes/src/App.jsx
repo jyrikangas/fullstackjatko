@@ -17,7 +17,7 @@ const App = () => {
     anecdoteService.getAll().then(anecdotes => initialize(anecdotes))
   }, [initialize])
   const { setMessage, makeVisible } = useNotificationActions()
-  const { message } = use
+  const { message } = useNotifications
   useEffect(() => {
       setMessage(`You voted `)
       makeVisible()
