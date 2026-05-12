@@ -5,10 +5,10 @@ vi.mock('../services/anecdotes', () => ({
     default: {
         getAll: vi.fn()
     }
-})
+}))
 
 describe('useAnecdoteActions', () => {
-    it('initialize loads anecdotes from service' async () => {
+    it('initialize loads anecdotes from service', async () => {
         const mockAnecdotes = [
             { id: '1', content: 'Anecdote 1', votes: 0 },
             { id: '2', content: 'Anecdote 2', votes: 0 },
