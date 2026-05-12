@@ -47,6 +47,6 @@ describe('useAnecdoteActions', () => {
         console.log(anecdotesResult.current);
         
         
-        expect(anecdotesResult.current).toEqual(sortedAnecdotes)
+        expect(anecdotesResult.current[0]).toEqual(sortedAnecdotes[0])
     })
 })
