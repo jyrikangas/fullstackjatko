@@ -46,4 +46,17 @@ describe('useAnecdoteActions', () => {
         
         expect(anecdotesResult.current).toEqual(sortedAnecdotes)
     })
+
+    it('filtering lists anecdotes that include filter text', async () => {
+        const mockAnecdotes = [
+            { id: '1', content: 'Anecdote 1', votes: 0 },
+            { id: '2', content: 'Anecdote 2', votes: 0 },
+            { id: '3', content: 'Anecdote 3', votes: 0 },
+        ]
+
+        useAnecdoteStore.setState({ anecdotes: mockAnecdotes, filter: "3"})
+        
+        const { result } = renderHook(() => useAnecdoteActions())
+        console.log(result.current);
+        
 })
