@@ -49,7 +49,6 @@ export const useAnecdotes = () => {
   const filter = useAnecdoteStore((state) => state.filter)
   return anecdotes
     .filter(anecdote => anecdote.content.toLowerCase().includes(filter.toLowerCase()))
-    .slice()
     .sort((a, b) => b.votes - a.votes)
 }
 export const useFilter = () => useAnecdoteStore((state) => state.filter)
