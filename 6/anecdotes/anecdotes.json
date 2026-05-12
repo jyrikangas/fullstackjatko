@@ -49,6 +49,11 @@
       "content": "ddddddd",
       "votes": 1,
       "id": "dyBuDaV7Zmc"
+    },
+    {
+      "content": "asdfasdf",
+      "votes": 0,
+      "id": "blAgUOHUIzM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
