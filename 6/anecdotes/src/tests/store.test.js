@@ -14,7 +14,8 @@ describe('useAnecdoteActions', () => {
     it('initialize loads anecdotes from service', async () => {
         const mockAnecdotes = [
             { id: '1', content: 'Anecdote 1', votes: 0 },
-            { id: '2', content: 'Anecdote 2', votes: 0 },
+            { id: '2', content: 'Anecdote 2', votes: 5 },
+            { id: '3', content: 'Anecdote 3', votes: 2 },
         ]
         anecdoteService.getAll.mockResolvedValue(mockAnecdotes)
         const { result } = renderHook(() => useAnecdoteActions())
