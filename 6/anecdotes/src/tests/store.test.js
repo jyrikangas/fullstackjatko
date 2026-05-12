@@ -57,11 +57,12 @@ describe('useAnecdoteActions', () => {
             { id: '2', content: 'Anecdote 2', votes: 0 },
             { id: '3', content: 'Anecdote 3', votes: 0 },
         ]
-
+        const filteredAnecdotes = [
+            { id: '3', content: 'Anecdote 3', votes: 0 }
+        ]
         useAnecdoteStore.setState({ anecdotes: mockAnecdotes, filter: "3"})
-        
-        const { result } = renderHook(() => useAnecdoteStore())
-        console.log(result.current)
+        const { result: anecdotesResult } = renderHook(() => useAnecdotes())
+        expect(anecdotesResult.current).toHaveLength(1)
     })
         
 })
