@@ -12,7 +12,7 @@ import useAnecdoteStore, { useAnecdotes, useFilter, useAnecdoteActions } from '.
 
 beforeEach(() => {
     useAnecdoteStore.setState({ anecdotes: [], filter: ""})
-    v1.clearAllMocks()
+    vi.clearAllMocks()
 })
 describe('useAnecdoteActions', () => {
     it('initialize loads anecdotes from service', async () => {
