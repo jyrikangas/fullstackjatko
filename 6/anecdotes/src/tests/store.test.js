@@ -7,6 +7,9 @@ vi.mock('../services/anecdotes', () => ({
     }
 }))
 
+import anecdoteService from '../services/anecdotes'
+import useAnecdoteStore, { useAnecdotes, useFilter, useAnecdoteActions } from '../store'
+
 describe('useAnecdoteActions', () => {
     it('initialize loads anecdotes from service', async () => {
         const mockAnecdotes = [
