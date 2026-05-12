@@ -23,6 +23,6 @@ describe('useAnecdoteActions', () => {
             await result.current.initialize()
         })
         const {result: anecdotesResult } = renderHook(() => useAnecdotes())
-        expect(anecdotesResult.current).toEqual()
+        expect(anecdotesResult.current).toEqual(mockAnecdotes)
     })
 })
