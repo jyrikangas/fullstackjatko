@@ -62,7 +62,9 @@ describe('useAnecdoteActions', () => {
         ]
         useAnecdoteStore.setState({ anecdotes: mockAnecdotes, filter: "3"})
         const { result: anecdotesResult } = renderHook(() => useAnecdotes())
-        expect(anecdotesResult.current).toHaveLength(1)
+        
+        expect(anecdotesResult.current).toEqual(filteredAnecdotes)
     })
+    
         
 })
