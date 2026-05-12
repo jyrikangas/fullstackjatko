@@ -43,6 +43,10 @@ describe('useAnecdoteActions', () => {
             await result.current.initialize()
         })
         const { result: anecdotesResult } = renderHook(() => useAnecdotes())
+        console.log(sortedAnecdotes);
+        console.log(anecdotesResult.current);
+        
+        
         expect(anecdotesResult.current).toEqual(sortedAnecdotes)
     })
 })
