@@ -68,11 +68,7 @@ describe('useAnecdoteActions', () => {
     })
     
     it('increases vote count by one when voting', async () => {
-        const mockAnecdotes = [
-            { id: '1', content: 'Anecdote 1', votes: 0 },
-            { id: '2', content: 'Anecdote 2', votes: 0 },
-            { id: '3', content: 'Anecdote 3', votes: 0 },
-        ]
+        const anecdote = { id: '1', content: 'Anecdote 1', votes: 0 }
         useAnecdoteStore.setState({anecdotes: mockAnecdotes})
         anecdoteService.update.mockResolvedValue({...anecdote, votes: anecdote.votes + 1})
         const { result } = renderHook(() => useAnecdoteActions())
