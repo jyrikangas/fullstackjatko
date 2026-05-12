@@ -3,13 +3,14 @@ import {renderHook, act } from '@testing-library/react'
 
 vi.mock('../services/anecdotes', () => ({
     default: {
-        getAll: vi.fn()
+        getAll: vi.fn(),
+        update: vi.fn()
     }
 }))
 
 import anecdoteService from '../services/anecdotes'
 import useAnecdoteStore, { useAnecdotes, useFilter, useAnecdoteActions } from '../store'
-import anecdotes from '../services/anecdotes'
+
 
 beforeEach(() => {
     useAnecdoteStore.setState({ anecdotes: [], filter: ""})
@@ -68,8 +69,8 @@ describe('useAnecdoteActions', () => {
     })
     
     it('increases vote count by one when voting', async () => {
-        const anecdote = { id: '1', content: 'Anecdote 1', votes: 0 }
-        useAnecdoteStore.setState({anecdotes: mockAnecdotes})
+        const anecdote = { id: 1, content: 'Anecdote 1', votes: 0 }
+        useAnecdoteStore.setState({anecdotes: [anecdote] })
         anecdoteService.update.mockResolvedValue({...anecdote, votes: anecdote.votes + 1})
         const { result } = renderHook(() => useAnecdoteActions())
         
