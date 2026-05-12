@@ -60,7 +60,7 @@ describe('useAnecdoteActions', () => {
 
         useAnecdoteStore.setState({ anecdotes: mockAnecdotes, filter: "3"})
         
-        const { result } = renderHook(() => useAnecdoteActions())
+        const { result } = renderHook(() => useAnecdoteStore())
         console.log(result.current)
     })
         
