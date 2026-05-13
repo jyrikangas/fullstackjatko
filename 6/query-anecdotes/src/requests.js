@@ -1,7 +1,7 @@
 
 const baseUrl = 'http://localhost:3001/anecdotes'
 
-export const createNote = async (content) => {
+export const createAnecdote = async (content) => {
     const options = {
         method: 'POST',
         headers: {
