@@ -3,14 +3,14 @@ import AnecdoteForm from './components/AnecdoteForm'
 import Notification from './components/Notification'
 import { useQuery } from '@tanstack/react-query'
 const App = () => {
-
+const baseUrl = 'http://localhost:3001/anecdotes'
   const handleVote = (anecdote) => {
     console.log('vote')
   }
     const { status, data, error} = useQuery({
         queryKey:['anecdotes'],
         queryFn: async () => {
-            const response = await fetch('http://localhost:3001/anecdotes')
+            const response = await fetch(baseUrl)
             return response.json()
         }
     })
