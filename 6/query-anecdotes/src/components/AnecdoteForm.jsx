@@ -1,7 +1,7 @@
-import 
+import { useMutation } from '@tanstack/react-query'
 
 const AnecdoteForm = () => {
-  const newNoteMutation = useMutation({
+  const newAnecdoteMutation = useMutation({
     mutationFn: createAnecdote,
   })
   const onCreate = (event) => {
