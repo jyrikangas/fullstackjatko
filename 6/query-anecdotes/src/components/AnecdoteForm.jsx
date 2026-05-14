@@ -9,8 +9,12 @@ const AnecdoteForm = () => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.reset()
+    if (length(content)<5){
+      setNotification(`Failed to create anecdote ${content} - anecdote must be at least 5 characters`)
+      setVisibility(1)
+    }
     setNotification(`created ${content}`)
-    setVisibility(5)
+    setVisibility(1)
     addAnecdote(content)
   }
 
