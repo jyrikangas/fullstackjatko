@@ -2,8 +2,11 @@ import { useContext } from "react"
 import NotificationContext from "../NotificationContext"
 
 const Notification = () => {
-  const { notification } = useContext(NotificationContext)
+  const { notification, timer, setTimer } = useContext(NotificationContext)
 
+  if (timer===0) {
+    return null
+  }
   const style = {
     border: 'solid',
     padding: 10,
