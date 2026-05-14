@@ -2,7 +2,7 @@ import { useContext } from "react"
 import NotificationContext from "../NotificationContext"
 
 const Notification = () => {
-  const { notification, setNotification } = useContext(NotificationContext)
+  const { notification } = useContext(NotificationContext)
 
   const style = {
     border: 'solid',
@@ -14,7 +14,7 @@ const Notification = () => {
 
   return (
     <div style={style}>
-      {notification} !
+      {notification}!
     </div>
   )
 }
