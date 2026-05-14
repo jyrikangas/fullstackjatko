@@ -2,16 +2,16 @@ import { useContext, useEffect } from "react"
 import NotificationContext from "../NotificationContext"
 
 const Notification = () => {
-  const { notification, timer, setTimer } = useContext(NotificationContext)
+  const { notification, visibility, setVisibility } = useContext(NotificationContext)
 
   useEffect(() => {
     const realTimer = setTimeout(() => {
-      setTimer(0)
+      setVisibility(0)
     }, 5000)
     return () => clearTimeout(realTimer)
     })
 
-  if (timer===0) {
+  if (visibility===0) {
     return null
   }
   

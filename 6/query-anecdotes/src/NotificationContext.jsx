@@ -9,7 +9,7 @@ export const NotificationContextProvider = (props) => {
 
     const [visibility, setVisibility] = useState(0)
     return (
-        <NotificationContext.Provider value={{ notification, setNotification, timer: visibility, setVisibility }}>
+        <NotificationContext.Provider value={{ notification, setNotification, visibility, setVisibility }}>
             {props.children}
         </NotificationContext.Provider>
     )

@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import NotificationContext from '../NotificationContext'
 const AnecdoteList = () => {
     const { vote, status, error, anecdotes } = useAnecdotes()
-    const { setNotification, setTimer } = useContext(NotificationContext)
+    const { setNotification, setVisibility } = useContext(NotificationContext)
 
     if (status === 'pending') {
         return <span> Loading... </span>
@@ -16,7 +16,7 @@ const AnecdoteList = () => {
     const handleVote = (anecdote) => {
         vote(anecdote)
         setNotification(`voted ${anecdote.content}`)
-        setTimer(1)
+        setVisibility(1)
     }
     
     return ( 
