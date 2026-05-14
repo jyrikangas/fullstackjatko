@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query' 
-import { createAnecdote, updateAnecdote } from './requests'
+import { createAnecdote, updateAnecdote } from '../requests'
 export const useAnecdotes = () => {
     const baseUrl = 'http://localhost:3001/anecdotes'
     const queryClient = useQueryClient()

@@ -1,11 +1,10 @@
 
-import { useAnecdotes } from '../useAnecdotes'
-import { useContext } from 'react'
-import NotificationContext from '../NotificationContext'
+import { useAnecdotes } from '../hooks/useAnecdotes'
+import useNotify from '../hooks/useNotify'
+
 const AnecdoteList = () => {
     const { vote, status, error, anecdotes } = useAnecdotes()
-    const { setNotification, setVisibility } = useContext(NotificationContext)
-
+    const { setNotification, setVisibility } = useNotify()
     if (status === 'pending') {
         return <span> Loading... </span>
     }

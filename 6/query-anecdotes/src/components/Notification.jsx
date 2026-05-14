@@ -1,8 +1,7 @@
-import { useContext, useEffect } from "react"
-import NotificationContext from "../NotificationContext"
-
+import { useEffect } from "react"
+import useNotify from "../hooks/useNotify"
 const Notification = () => {
-  const { notification, visibility, setVisibility } = useContext(NotificationContext)
+  const { notification, visibility, setVisibility } = useNotify()
 
   useEffect(() => {
     const realTimer = setTimeout(() => {
