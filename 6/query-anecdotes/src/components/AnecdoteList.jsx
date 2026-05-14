@@ -9,7 +9,7 @@ const AnecdoteList = () => {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['anecdotes']})
         }
-    }
+    })
    
    
     const handleVote = (anecdote) => {
