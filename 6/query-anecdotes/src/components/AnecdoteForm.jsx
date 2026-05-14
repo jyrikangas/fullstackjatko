@@ -4,13 +4,13 @@ import NotificationContext from '../NotificationContext'
 
 const AnecdoteForm = () => {
   const { addAnecdote } = useAnecdotes()
-  const { setNotification, setTimer } = useContext(NotificationContext)
+  const { setNotification, setVisibility } = useContext(NotificationContext)
   const onCreate = (event) => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.reset()
     setNotification(`created ${content}`)
-    setTimer(5)
+    setVisibility(5)
     addAnecdote(content)
   }
 
