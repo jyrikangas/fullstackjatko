@@ -8,7 +8,7 @@ const App = () => {
 
   const queryClient = useQueryClient()
   const updateAnecdoteMutation = useMutation({
-      mutationFN: updateAnecdote,
+      mutationFn: updateAnecdote,
       onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ['anecdotes']})
       }
