@@ -22,7 +22,7 @@ export const updateAnecdote = async (updatedAnecdote) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedAnecdote)
     }
-    const response = await fetch(baseUrl, options)
+    const response = await fetch(`${baseUrl}/${updatedAnecdote.id}`, options)
     if (!response.ok) {
         console.log('Failed to update anecdote');
     }
