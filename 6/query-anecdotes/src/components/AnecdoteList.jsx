@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from "@tanstack/react-query"
+import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query"
 import { updateAnecdote } from "../requests"
 
 
@@ -14,7 +14,7 @@ const AnecdoteList = () => {
    
     const handleVote = (anecdote) => {
         const updatedAnecdote = {...anecdote, votes:anecdote.votes + 1}
-        updateAnecdoteMutation(updateAnecdote)
+        updateAnecdoteMutation(updatedAnecdote)
         console.log('vote')
 
   }
