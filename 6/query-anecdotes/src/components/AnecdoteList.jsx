@@ -13,7 +13,9 @@ const AnecdoteList = () => {
    
    
     const handleVote = (anecdote) => {
-    console.log('vote')
+        const updatedAnecdote = {...anecdote, votes:anecdote.votes + 1}
+        updateAnecdoteMutation(updateAnecdote)
+        console.log('vote')
 
   }
     const { status, data, error} = useQuery({
