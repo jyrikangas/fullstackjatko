@@ -4,15 +4,15 @@ import Notification from './components/Notification'
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
 import { updateAnecdote } from './requests'
 const App = () => {
-const baseUrl = 'http://localhost:3001/anecdotes'
+  const baseUrl = 'http://localhost:3001/anecdotes'
 
   const queryClient = useQueryClient()
-    const updateAnecdoteMutation = useMutation({
-        mutationFN: updateAnecdote,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['anecdotes']})
-        }
-    })
+  const updateAnecdoteMutation = useMutation({
+      mutationFN: updateAnecdote,
+      onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['anecdotes']})
+      }
+  })
   const handleVote = (anecdote) => {
         const updatedAnecdote = {...anecdote, votes:anecdote.votes + 1}
         updateAnecdoteMutation(updatedAnecdote)
