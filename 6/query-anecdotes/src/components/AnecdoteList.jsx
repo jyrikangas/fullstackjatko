@@ -1,5 +1,6 @@
 
 import { useAnecdotes } from '../useAnecdotes'
+import NotificationContext from '../NotificationContext'
 const AnecdoteList = () => {
     
     const { vote, status, error, anecdotes } = useAnecdotes()
@@ -10,6 +11,12 @@ const AnecdoteList = () => {
     if (status === 'error') {
         return <span>Error: {error.message}</span>
     }
+
+    const { setNotification } = NotificationContext()
+    const handleVote = (anecdote) => {
+        vote(anecdote)
+        
+    }
     
     return ( 
         <div>
@@ -18,7 +25,7 @@ const AnecdoteList = () => {
                   <div>{anecdote.content}</div>
                   <div>
                     has {anecdote.votes}
-                    <button onClick={() => vote(anecdote)}>vote</button>
+                    <button onClick={() => handleVote(anecdote)}>vote</button>
                   </div>
                 </div>
       ))}
