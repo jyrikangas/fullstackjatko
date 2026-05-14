@@ -1,11 +1,15 @@
 import { useAnecdotes } from '../useAnecdotes'
+import { useContext } from 'react'
+import NotificationContext from '../NotificationContext'
+
 const AnecdoteForm = () => {
   const { addAnecdote } = useAnecdotes()
+  const { setNotification } = useContext(NotificationContext)
   const onCreate = (event) => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.reset()
-    console.log('new anecdote')
+    setNotification(`created ${content}`)
     addAnecdote(content)
   }
 
