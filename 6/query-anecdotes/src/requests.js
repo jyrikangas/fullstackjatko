@@ -21,7 +21,6 @@ export const updateAnecdote = async (updatedAnecdote) => {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedAnecdote)
-        }
     }
     const response = await fetch(baseUrl, options)
     if (!response.ok) {
