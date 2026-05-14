@@ -15,7 +15,7 @@ const AnecdoteList = () => {
     const { setNotification } = NotificationContext()
     const handleVote = (anecdote) => {
         vote(anecdote)
-        
+        setNotification(`voted ${anecdote.content}`)
     }
     
     return ( 
