@@ -11,7 +11,7 @@ const Notification = () => {
     return () => clearTimeout(realTimer)
     })
 
-  if (visibility===0) {
+  if (!visibility) {
     return null
   }
   
