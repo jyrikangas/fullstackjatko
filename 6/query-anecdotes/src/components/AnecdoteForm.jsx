@@ -12,10 +12,11 @@ const AnecdoteForm = () => {
     if (content.length<5){
       setNotification(`Failed to create anecdote ${content} - anecdote must be at least 5 characters`)
       setVisibility(1)
+    } else {
+      setNotification(`created ${content}`)
+      setVisibility(1)
+      addAnecdote(content)
     }
-    setNotification(`created ${content}`)
-    setVisibility(1)
-    addAnecdote(content)
   }
 
 
