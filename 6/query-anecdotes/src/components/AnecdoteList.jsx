@@ -3,9 +3,9 @@ import { useAnecdotes } from '../useAnecdotes'
 import { useContext } from 'react'
 import NotificationContext from '../NotificationContext'
 const AnecdoteList = () => {
-    
     const { vote, status, error, anecdotes } = useAnecdotes()
-
+    const { setNotification } = useContext(NotificationContext)
+    
     if (status === 'pending') {
         return <span> Loading... </span>
     }
@@ -13,7 +13,6 @@ const AnecdoteList = () => {
         return <span>Error: {error.message}</span>
     }
 
-    const { setNotification } = useContext(NotificationContext)
     const handleVote = (anecdote) => {
         vote(anecdote)
         setNotification(`voted ${anecdote.content}`)
