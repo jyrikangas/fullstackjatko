@@ -17,6 +17,8 @@ export const createAnecdote = async (content) => {
     return response.json()
 }
 export const updateAnecdote = async (updatedAnecdote) => {
+    console.log('requests');
+    
     const options = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
