@@ -6,6 +6,7 @@ export default NotificationContext
 
 export const NotificationContextProvider = (props) => {
     const [notification, setNotification] = useState('Notification')
+    const [timer, setTimer] = useState(0)
     return (
         <NotificationContext.Provider value={{ notification, setNotification }}>
             {props.children}
