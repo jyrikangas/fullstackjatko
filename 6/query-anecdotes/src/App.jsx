@@ -15,8 +15,7 @@ const App = () => {
   })
   const handleVote = (anecdote) => {
         const updatedAnecdote = {...anecdote, votes:anecdote.votes + 1}
-        updateAnecdoteMutation(updatedAnecdote)
-        console.log('vote')
+        updateAnecdoteMutation.mutate(updatedAnecdote)
 
   }
   
