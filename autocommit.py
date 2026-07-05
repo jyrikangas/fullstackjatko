@@ -17,7 +17,7 @@ from zoneinfo import ZoneInfo
 
 
 HELSINKI_TZ = ZoneInfo("Europe/Helsinki")
-MIN_SECONDS_BETWEEN_COMMITS = 61
+MIN_SECONDS_BETWEEN_COMMITS = 20
 
 
 def resolve_repo_root(path):
