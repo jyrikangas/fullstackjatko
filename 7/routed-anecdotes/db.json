@@ -6,6 +6,13 @@
       "info": "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
       "votes": 0,
       "id": "1"
+    },
+    {
+      "content": "asfdasf",
+      "author": "asdfafda",
+      "info": "asfdasf",
+      "votes": 0,
+      "id": "JCw874-nffQ"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
