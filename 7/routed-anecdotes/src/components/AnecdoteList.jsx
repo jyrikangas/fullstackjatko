@@ -1,8 +1,8 @@
 import { useAnecdotes } from "../hooks"
 const AnecdoteList = ({ anecdotes }) => {
   const { deleteAnecdote } = useAnecdotes()
-  const handleDelete = async (anecdote) => {
-    await deleteAnecdote(anecdote)
+  const handleDelete = (anecdote) => {
+    deleteAnecdote(anecdote)
   }
   return (
   <div>
