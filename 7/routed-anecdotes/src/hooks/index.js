@@ -28,7 +28,10 @@ export const useAnecdotes = () => {
     anecdoteService.createNew(anecdote).then(data => setAnecdotes(anecdotes.concat(data)))
   }
   const deleteAnecdote = (anecdote) => {
-    anecdoteService.remove(anecdote.id).then(prev => {setAnecdotes(anecdotes.filter(a => a.id !== anecdote.id))})
+    anecdoteService.remove(anecdote.id).then(prev => {
+      const updated = prev.filter(a => a.id !== anecdote.id);
+      console.log("State before:", prev.length, "State after:", updated.length); // Verify it drops by 1
+      return updated})
 
   }
   return { anecdotes, addAnecdote, deleteAnecdote }
