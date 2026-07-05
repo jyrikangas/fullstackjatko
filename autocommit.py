@@ -91,28 +91,21 @@ def main():
     poll_interval = 0.8
     debounce = 0.5
     last_commit_at = 0.0
-    last_seen = False
-    pending = False
+    dirty_since = None
     print(f"[autocommit.py] polling git status in {repo_root}")
     try:
         while True:
+            now = time.time()
             changed = has_changes(repo_root)
-            if changed and not last_seen:
-                # first time we detect changes, start debounce timer
-                pending = True
-                debounce_until = time.time() + debounce
-            if pending and time.time() >= debounce_until:
-                now = time.time()
-                if has_changes(repo_root) and now - last_commit_at >= MIN_SECONDS_BETWEEN_COMMITS:
+            if changed:
+                if dirty_since is None:
+                    dirty_since = now
+                if now - dirty_since >= debounce and now - last_commit_at >= MIN_SECONDS_BETWEEN_COMMITS:
                     do_commit(repo_root)
                     last_commit_at = now
-                elif now - last_commit_at < MIN_SECONDS_BETWEEN_COMMITS:
-                    debounce_until = last_commit_at + MIN_SECONDS_BETWEEN_COMMITS
-                    pending = True
-                    time.sleep(poll_interval)
-                    continue
-                pending = False
-            last_seen = changed
+                    dirty_since = None
+            else:
+                dirty_since = None
             time.sleep(poll_interval)
     except KeyboardInterrupt:
         print('\n[autocommit.py] stopped')
