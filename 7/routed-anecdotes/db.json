@@ -20,6 +20,13 @@
       "info": "asaaasdf",
       "votes": 0,
       "id": "Hkb2-KZF8pk"
+    },
+    {
+      "content": "fda",
+      "author": "dasfdas",
+      "info": "fdasfadsfa",
+      "votes": 0,
+      "id": "d2g5dOzrd6s"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

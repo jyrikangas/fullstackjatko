@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import anecdoteService from '../services/anecdotes'
+import { data } from 'react-router-dom'
 export const useField = (type) => {
   const [value, setValue] = useState('')
 
@@ -23,6 +24,6 @@ export const useAnecdotes = () => {
   useEffect(() => {
     anecdoteService.getAll().then(data => setAnecdotes(data))
   }, [])
-  const addAnecdote = (anecdote) => { anecdoteService.createNew(anecdote) }
+  const addAnecdote = (anecdote) => { anecdoteService.createNew(anecdote).then(data => setAnecdotes(data)) }
   return { anecdotes, addAnecdote }
 }
