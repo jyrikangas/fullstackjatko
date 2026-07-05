@@ -9,6 +9,6 @@ const AnecdoteList = ({ anecdotes }) => {
       <button type='button' onClick={deleteAnecdote(anecdote)}>delete</button>
     </ul>
   </div>
-)
+)}
 
 export default AnecdoteList
