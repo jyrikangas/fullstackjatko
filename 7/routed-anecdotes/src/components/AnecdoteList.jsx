@@ -5,8 +5,10 @@ const AnecdoteList = ({ anecdotes }) => {
   <div>
     <h2>Anecdotes</h2>
     <ul>
-      {anecdotes.map(anecdote => <li key={anecdote.id}>{anecdote.content}</li>)}
-      <button type='button' onClick={deleteAnecdote(anecdote)}>delete</button>
+      {anecdotes.map(anecdote => <li key={anecdote.id}>{anecdote.content}
+        <button type='button' onClick={deleteAnecdote(anecdote)}>delete</button>
+      </li>)}
+      
     </ul>
   </div>
 )}
