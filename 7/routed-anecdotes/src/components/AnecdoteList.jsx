@@ -1,6 +1,9 @@
 import { useAnecdotes } from "../hooks"
 const AnecdoteList = ({ anecdotes }) => {
   const { deleteAnecdote } = useAnecdotes()
+  const handleDelete = (e) => {
+    e.preventDefault()
+  }
   return (
   <div>
     <h2>Anecdotes</h2>
