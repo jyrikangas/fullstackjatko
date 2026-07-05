@@ -24,6 +24,8 @@ export const useAnecdotes = () => {
   useEffect(() => {
     anecdoteService.getAll().then(data => setAnecdotes(data))
   }, [])
-  const addAnecdote = (anecdote) => { anecdoteService.createNew(anecdote).then(data => setAnecdotes(data)) }
+  const addAnecdote = (anecdote) => {
+    anecdoteService.createNew(anecdote).then(data => setAnecdotes(anecdotes.concat(data)))
+  }
   return { anecdotes, addAnecdote }
 }
