@@ -1,7 +1,7 @@
 import { useAnecdotes } from "../hooks"
 const AnecdoteList = () => {
-  const { AnecdoteList, deleteAnecdote } = useAnecdotes()
-  
+  const { anecdotes, deleteAnecdote } = useAnecdotes()
+
   const handleDelete = (anecdote) => {
     deleteAnecdote(anecdote)
   }
