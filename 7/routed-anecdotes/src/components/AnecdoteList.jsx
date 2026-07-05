@@ -1,6 +1,6 @@
 import { useAnecdotes } from "../hooks"
 const AnecdoteList = ({ anecdotes }) => {
-  const { deleteAnecdote } = useAnecdotes
+  const { deleteAnecdote } = useAnecdotes()
   return (
   <div>
     <h2>Anecdotes</h2>
