@@ -11,7 +11,7 @@ const CreateNew = ({ addAnecdote }) => {
     e.preventDefault()
     
     
-    addAnecdote({ content:content.value, author:author.value, info:info.value, votes: 0 })
+    addAnecdote({ content:content.input.value, author:author.input.value, info:info.input.value, votes: 0 })
     navigate('/')
   }
   const handleReset = (e) => {
