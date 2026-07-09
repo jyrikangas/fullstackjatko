@@ -2,7 +2,6 @@ import Blog from './Blog'
 import { Link } from 'react-router-dom'
 
 const BlogList = ({ blogs }) => {
-  throw new Error('simulated error')
   return (
     <div>
       <h2>blogs</h2>
