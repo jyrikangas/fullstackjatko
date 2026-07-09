@@ -12,6 +12,7 @@ import blogService from './services/blogs'
 import loginService from './services/login'
 import Blog from './components/Blog'
 import BlogForm from './components/BlogForm'
+import ErrorBoundary from './ErrorBoundary'
 
 import Notification from './components/Notification'
 
@@ -119,27 +120,36 @@ const App = () => {
           }
         </Toolbar>
       </AppBar>
-
-      <Notification notification={notification} />
-
+      <ErrorBoundary>
+        <Notification notification={notification} />
+      </ErrorBoundary>
       <Routes>
         <Route path="/" element={
+          <ErrorBoundary>
           <BlogList blogs={blogs} />
+          </ErrorBoundary>
         } />
         <Route path="/blogs/:id" element={
+          <ErrorBoundary>
           <Blog
             blog={blog}
             addLike={addLike}
             currentUser={user}
             removeBlog={removeBlog}
           />
+          </ErrorBoundary>
         } />
         <Route path="/login" element={
+          <ErrorBoundary>
           <Login doLogin={doLogin} />
+          </ErrorBoundary>
         } />
         <Route path="/create" element={
+          <ErrorBoundary>
           <BlogForm createBlog={addBlog} />
+          </ErrorBoundary>
         } />
+
       </Routes>
     </Container>
   )
