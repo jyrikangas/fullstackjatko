@@ -1,107 +1,103 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
-import {
-  Routes, Route, Link, useMatch, useNavigate
-} from 'react-router-dom'
+import { Routes, Route, Link, useMatch, useNavigate } from "react-router-dom";
 
-import { Container, AppBar, Toolbar, Button, Typography } from '@mui/material'
+import { Container, AppBar, Toolbar, Button, Typography } from "@mui/material";
 
-import BlogList from './components/BlogList'
-import Login from './components/Login'
-import blogService from './services/blogs'
-import loginService from './services/login'
-import Blog from './components/Blog'
-import BlogForm from './components/BlogForm'
-import ErrorBoundary from './ErrorBoundary'
+import BlogList from "./components/BlogList";
+import Login from "./components/Login";
+import blogService from "./services/blogs";
+import loginService from "./services/login";
+import Blog from "./components/Blog";
+import BlogForm from "./components/BlogForm";
+import ErrorBoundary from "./ErrorBoundary";
 
-import Notification from './components/Notification'
+import Notification from "./components/Notification";
 
 const App = () => {
-  const [blogs, setBlogs] = useState([])
-  const [user, setUser] = useState(null)
-  const [notification, setNotification] = useState({ message: null })
+  const [blogs, setBlogs] = useState([]);
+  const [user, setUser] = useState(null);
+  const [notification, setNotification] = useState({ message: null });
 
-  const navigation = useNavigate()
-
-  useEffect(() => {
-    blogService.getAll().then(blogs => setBlogs(blogs))
-  }, [])
+  const navigation = useNavigate();
 
   useEffect(() => {
-    const userJSON = window.localStorage.getItem('loggedBlogappUser')
-    const user = JSON.parse(userJSON)
+    blogService.getAll().then((blogs) => setBlogs(blogs));
+  }, []);
+
+  useEffect(() => {
+    const userJSON = window.localStorage.getItem("loggedBlogappUser");
+    const user = JSON.parse(userJSON);
 
     if (user) {
-      blogService.setToken(user.token)
-      setUser(user)
+      blogService.setToken(user.token);
+      setUser(user);
     }
-  }, [])
+  }, []);
 
   const notifyWith = (message, isError = false) => {
-    setNotification({ message, isError })
+    setNotification({ message, isError });
     setTimeout(() => {
-      setNotification({ message: null })
-    }, 25000)
-  }
+      setNotification({ message: null });
+    }, 25000);
+  };
 
-  const addBlog = async blogObject => {
+  const addBlog = async (blogObject) => {
     try {
-      const createdBlog = await blogService.create(blogObject)
-      setBlogs(blogs.concat(createdBlog))
+      const createdBlog = await blogService.create(blogObject);
+      setBlogs(blogs.concat(createdBlog));
       notifyWith(
-        `a new blog ${createdBlog.title} by ${createdBlog.author} added`
-      )
-      navigation('/')
+        `a new blog ${createdBlog.title} by ${createdBlog.author} added`,
+      );
+      navigation("/");
     } catch (error) {
-      console.log('Creating new blog failed:', error)
+      console.log("Creating new blog failed:", error);
     }
-  }
+  };
 
-  const addLike = async blog => {
-    const newBlog = { ...blog, likes: blog.likes + 1, user: blog.user.id }
+  const addLike = async (blog) => {
+    const newBlog = { ...blog, likes: blog.likes + 1, user: blog.user.id };
     try {
-      const updatedBlog = await blogService.update(newBlog)
-      setBlogs(blogs.map(b => (b.id === blog.id ? updatedBlog : b)))
+      const updatedBlog = await blogService.update(newBlog);
+      setBlogs(blogs.map((b) => (b.id === blog.id ? updatedBlog : b)));
     } catch (error) {
-      console.log('Error while trying to like a blog:', error)
+      console.log("Error while trying to like a blog:", error);
     }
-  }
+  };
 
-  const removeBlog = async blog => {
+  const removeBlog = async (blog) => {
     try {
-      await blogService.remove(blog.id)
-      setBlogs(blogs.filter(b => b.id !== blog.id))
-      notifyWith(`Blog ${blog.title} by ${blog.author} removed`)
-      navigation('/')
+      await blogService.remove(blog.id);
+      setBlogs(blogs.filter((b) => b.id !== blog.id));
+      notifyWith(`Blog ${blog.title} by ${blog.author} removed`);
+      navigation("/");
     } catch (error) {
-      console.log('Error while trying to delete a blog', error)
+      console.log("Error while trying to delete a blog", error);
     }
-  }
+  };
 
   const doLogin = async ({ username, password }) => {
     try {
-      const user = await loginService.login({ username, password })
+      const user = await loginService.login({ username, password });
 
-      window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
-      blogService.setToken(user.token)
-      setUser(user)
-      navigation('/')
+      window.localStorage.setItem("loggedBlogappUser", JSON.stringify(user));
+      blogService.setToken(user.token);
+      setUser(user);
+      navigation("/");
     } catch {
-      notifyWith('wrong username or password', true)
-      console.log('wrong credentials')
+      notifyWith("wrong username or password", true);
+      console.log("wrong credentials");
     }
-  }
+  };
 
   const handleLogout = async () => {
-    window.localStorage.removeItem('loggedBlogappUser')
-    setUser(null)
-    navigation('/')
-  }
+    window.localStorage.removeItem("loggedBlogappUser");
+    setUser(null);
+    navigation("/");
+  };
 
-  const match = useMatch('/blogs/:id')
-  const blog = match
-    ? blogs.find(b => b.id === match.params.id)
-    : null
+  const match = useMatch("/blogs/:id");
+  const blog = match ? blogs.find((b) => b.id === match.params.id) : null;
 
   return (
     <Container>
@@ -110,53 +106,96 @@ const App = () => {
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Blog App
           </Typography>
-          <Button color="inherit" component={Link} to="/" sx={{ '&:hover': { bgcolor: 'rgba(255,255,255,0.2)' } }}>blogs</Button>
-          {!user
-            ? <Button color="inherit" component={Link} to="/login" sx={{ '&:hover': { bgcolor: 'rgba(255,255,255,0.2)' } }}>login</Button>
-            : <>
-              <Button color="inherit" component={Link} to="/create" sx={{ '&:hover': { bgcolor: 'rgba(255,255,255,0.2)' } }}>new blog</Button>
-              <Button color="inherit" onClick={handleLogout} sx={{ '&:hover': { bgcolor: 'rgba(255,255,255,0.2)' } }}>logout</Button>
+          <Button
+            color="inherit"
+            component={Link}
+            to="/"
+            sx={{ "&:hover": { bgcolor: "rgba(255,255,255,0.2)" } }}
+          >
+            blogs
+          </Button>
+          {!user ? (
+            <Button
+              color="inherit"
+              component={Link}
+              to="/login"
+              sx={{ "&:hover": { bgcolor: "rgba(255,255,255,0.2)" } }}
+            >
+              login
+            </Button>
+          ) : (
+            <>
+              <Button
+                color="inherit"
+                component={Link}
+                to="/create"
+                sx={{ "&:hover": { bgcolor: "rgba(255,255,255,0.2)" } }}
+              >
+                new blog
+              </Button>
+              <Button
+                color="inherit"
+                onClick={handleLogout}
+                sx={{ "&:hover": { bgcolor: "rgba(255,255,255,0.2)" } }}
+              >
+                logout
+              </Button>
             </>
-          }
+          )}
         </Toolbar>
       </AppBar>
       <ErrorBoundary>
         <Notification notification={notification} />
       </ErrorBoundary>
       <Routes>
-        <Route path="/" element={
-          <ErrorBoundary>
-          <BlogList blogs={blogs} />
-          </ErrorBoundary>
-        } />
-        <Route path="/blogs/:id" element={
-          <ErrorBoundary>
-          <Blog
-            blog={blog}
-            addLike={addLike}
-            currentUser={user}
-            removeBlog={removeBlog}
-          />
-          </ErrorBoundary>
-        } />
-        <Route path="/login" element={
-          <ErrorBoundary>
-          <Login doLogin={doLogin} />
-          </ErrorBoundary>
-        } />
-        <Route path="/create" element={
-          <ErrorBoundary>
-          <BlogForm createBlog={addBlog} />
-          </ErrorBoundary>
-        } />
-        <Route path="/*" element={
-          <div>
-            <h2>404 - Not Found</h2>
-          </div>
-        } />
+        <Route
+          path="/"
+          element={
+            <ErrorBoundary>
+              <BlogList blogs={blogs} />
+            </ErrorBoundary>
+          }
+        />
+        <Route
+          path="/blogs/:id"
+          element={
+            <ErrorBoundary>
+              <Blog
+                blog={blog}
+                addLike={addLike}
+                currentUser={user}
+                removeBlog={removeBlog}
+              />
+            </ErrorBoundary>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <ErrorBoundary>
+              <Login doLogin={doLogin} />
+            </ErrorBoundary>
+          }
+        />
+        <Route
+          path="/create"
+          element={
+            <ErrorBoundary>
+              <BlogForm createBlog={addBlog} />
+            </ErrorBoundary>
+          }
+        />
+        <Route
+          path="/*"
+          element={
+            <div>
+              <h2>404 - Not Found</h2>
+            </div>
+          }
+        />
       </Routes>
     </Container>
-  )
-}
+  );
+};
 
-export default App
+export default App;

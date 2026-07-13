@@ -1,22 +1,32 @@
-import { useState } from 'react'
+import { useState } from "react";
 import {
-  Card, CardContent, Typography, Button, Box, Link,
-  Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
-} from '@mui/material'
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  Box,
+  Link,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from "@mui/material";
 
 const Blog = ({ blog, addLike, currentUser, removeBlog }) => {
-  const [confirmOpen, setConfirmOpen] = useState(false)
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   if (!blog) {
-    return null
+    return null;
   }
 
-  const canBeRemoved = () => currentUser && currentUser.username === blog.user.username
+  const canBeRemoved = () =>
+    currentUser && currentUser.username === blog.user.username;
 
   const handleRemove = () => {
-    removeBlog(blog)
-    setConfirmOpen(false)
-  }
+    removeBlog(blog);
+    setConfirmOpen(false);
+  };
 
   return (
     <Card sx={{ mt: 2, maxWidth: 600 }} className="blog">
@@ -28,7 +38,13 @@ const Blog = ({ blog, addLike, currentUser, removeBlog }) => {
           by {blog.author}
         </Typography>
 
-        <Link href={blog.url} target="_blank" rel="noopener" display="block" sx={{ mb: 1 }}>
+        <Link
+          href={blog.url}
+          target="_blank"
+          rel="noopener"
+          display="block"
+          sx={{ mb: 1 }}
+        >
           {blog.url}
         </Link>
 
@@ -36,7 +52,7 @@ const Blog = ({ blog, addLike, currentUser, removeBlog }) => {
           Added by {blog.user.name}
         </Typography>
 
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 1 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1 }}>
           <Typography variant="body1">{blog.likes} likes</Typography>
           {currentUser && (
             <Button
@@ -69,11 +85,13 @@ const Blog = ({ blog, addLike, currentUser, removeBlog }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setConfirmOpen(false)}>cancel</Button>
-          <Button onClick={handleRemove} color="error" variant="contained">remove</Button>
+          <Button onClick={handleRemove} color="error" variant="contained">
+            remove
+          </Button>
         </DialogActions>
       </Dialog>
     </Card>
-  )
-}
+  );
+};
 
-export default Blog
+export default Blog;
