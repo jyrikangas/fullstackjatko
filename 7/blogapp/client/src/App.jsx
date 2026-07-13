@@ -14,10 +14,11 @@ import ErrorBoundary from "./ErrorBoundary";
 
 import Notification from "./components/Notification";
 
+import { useNotificationStore } from "./state";
 const App = () => {
   const [blogs, setBlogs] = useState([]);
   const [user, setUser] = useState(null);
-  const [notification, setNotification] = useState({ message: null });
+  const { message, isError, actions } = useNotificationStore();
 
   const navigation = useNavigate();
 
@@ -36,10 +37,10 @@ const App = () => {
   }, []);
 
   const notifyWith = (message, isError = false) => {
-    setNotification({ message, isError });
+    actions.setNotification(message, isError);
     setTimeout(() => {
-      setNotification({ message: null });
-    }, 25000);
+      actions.setNotification("", false);
+    }, 10000);
   };
 
   const addBlog = async (blogObject) => {
@@ -145,7 +146,7 @@ const App = () => {
         </Toolbar>
       </AppBar>
       <ErrorBoundary>
-        <Notification notification={notification} />
+        <Notification />
       </ErrorBoundary>
       <Routes>
         <Route
