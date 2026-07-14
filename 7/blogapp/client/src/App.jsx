@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import { Routes, Route, Link, useMatch, useNavigate } from "react-router-dom";
 
@@ -15,9 +15,10 @@ import ErrorBoundary from "./ErrorBoundary";
 import Notification from "./components/Notification";
 import { useBlogStore } from "./blogStore";
 import { useNotificationStore } from "./notificationStore";
+import { useUserStore } from "./userStore";
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const { user, setUser } = useUserStore()
   const notificationActions = useNotificationStore((state) => state.actions);
   const blogActions = useBlogStore((state) => state.actions);
 
