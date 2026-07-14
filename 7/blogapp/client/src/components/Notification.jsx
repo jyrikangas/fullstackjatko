@@ -1,5 +1,5 @@
 import { Alert } from "@mui/material";
-import { useNotificationStore } from "../state";
+import { useNotificationStore } from "../notificationStore";
 const Notification = () => {
   const { message, isError } = useNotificationStore();
 

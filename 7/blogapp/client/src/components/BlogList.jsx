@@ -1,8 +1,9 @@
 import Blog from "./Blog";
 import { Link } from "react-router-dom";
+import { useBlogStore } from "../blogStore";
 
-const BlogList = ({ blogs }) => {
-  throw new Error("simulated error");
+const BlogList = () => {
+  const { blogs } = useBlogStore();
   return (
     <div>
       <h2>blogs</h2>

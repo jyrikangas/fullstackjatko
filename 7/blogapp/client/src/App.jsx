@@ -13,13 +13,18 @@ import BlogForm from "./components/BlogForm";
 import ErrorBoundary from "./ErrorBoundary";
 
 import Notification from "./components/Notification";
+import { useBlogStore } from "./blogStore";
+import { useNotificationStore } from "./notificationStore";
 
-import { useNotificationStore } from "./state";
 const App = () => {
-  const [blogs, setBlogs] = useState([]);
   const [user, setUser] = useState(null);
-  const { message, isError, actions } = useNotificationStore();
+  const notificationActions = useNotificationStore((state) => state.actions);
+  const blogActions = useBlogStore((state) => state.actions);
 
+  const message = useNotificationStore((state) => state.message);
+  const isError = useNotificationStore((state) => state.isError);
+  const blogs = useBlogStore((state) => state.blogs);
+  const setBlogs = blogActions.setBlogs;
   const navigation = useNavigate();
 
   useEffect(() => {
@@ -37,9 +42,9 @@ const App = () => {
   }, []);
 
   const notifyWith = (message, isError = false) => {
-    actions.setNotification(message, isError);
+    notificationActions.setNotification(message, isError);
     setTimeout(() => {
-      actions.setNotification("", false);
+      notificationActions.setNotification("", false);
     }, 10000);
   };
 
@@ -153,7 +158,7 @@ const App = () => {
           path="/"
           element={
             <ErrorBoundary>
-              <BlogList blogs={blogs} />
+              <BlogList />
             </ErrorBoundary>
           }
         />
